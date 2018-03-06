@@ -220,6 +220,11 @@ const setNameDog = (req, res) => {
   // create new save promise for the database
   const savePromise = newDog.save();
 
+  savePromise.then(() => {
+    // return success
+    res.json({ name: newDog.name, breed: newDog.breed, age: newDog.age });
+  });
+
   // if error, return it
   savePromise.catch(err => res.json({ err }));
 
